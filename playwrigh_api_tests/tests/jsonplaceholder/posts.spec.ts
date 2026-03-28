@@ -1,17 +1,35 @@
 import { test, expect } from '@playwright/test';
+import { PostSchema, PostsSchema } from './Schemas/post.schemas';
 
 /// create tests for jsonplaceholder and tmdb using the baseURL defined in the playwright.config.ts file
 
 test('jsonplaceholder - get posts', async ({request}) => {
   const response = await request.get('/posts');
   expect(response.status()).toBe(200);
+
+  // Check Schemas for all obhects in the response (array of objects)
+  const body  = await response.json();
+  const result = PostsSchema.safeParse(body);
   
-  const responseBody = await response.json();
-  console.log(responseBody);
-  expect(responseBody.length).toBe(100);
+
+  console.log(body);
+  expect(body.length).toBe(100);
 
 }
 );
+
+test('jsonplaceholder - get single post', async ({request}) => {
+  const response = await request.get("posts/9");
+  expect(response.status()).toBe(200);
+
+  // Check Schema for a single object in the response
+  const body = await response.json();
+  const result = PostSchema.safeParse(body);
+  expect(result.success).toBe(true);
+  expect(body.id).toBe(9)
+
+});
+
 
 test('jsonplaceholder - create and validate resource', async ({request}) => {
   
@@ -61,6 +79,11 @@ test('jsonplaceholder - update resource', async ({request}) => {
 test('jsonplaceholder - delete resource', async ({request}) => {
   const response = await request.delete('/posts/2');
   expect(response.status()).toBe(200); // This is a issue with the jsonplaceholder API, ideally the status code should be 204 for a successful delete operation, but since the responses are mocked we get a 200 status code instead.
+});
+
+test('jsonplaceholder - negative test - get non-existent post', async ({request}) => {
+  const response = await request.get('/posts/9999');
+  expect(response.status()).toBe(404);
 });
 
 

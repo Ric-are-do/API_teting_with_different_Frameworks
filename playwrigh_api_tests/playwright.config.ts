@@ -16,7 +16,7 @@ export default defineConfig({
       use:{
         baseURL: 'https://api.themoviedb.org/3',
         extraHTTPHeaders:{
-          Authorization: 'Bearer ${process.env.TMDB_API_KEY}'
+          Authorization: `Bearer ${process.env.TMDB_API_KEY}`
         }
       }
     }
