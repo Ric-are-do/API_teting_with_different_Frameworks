@@ -52,12 +52,12 @@ Each folder (`playwright-tests`, `jest-tests`) is fully self-contained with its 
 
 ## Phases
 
-### Phase 1 — Playwright Foundation (JSONPlaceholder)
-- Set up the `playwright-tests` project
-- Write GET tests — posts, users, comments, todos
-- Assert on: status codes, response body shape, required fields, response time
-- Write negative tests — invalid IDs, non-existent resources (404s)
-- Organise tests into logical suites per resource
+### Phase 1 — Playwright Foundation (JSONPlaceholder) ✅ DONE
+- Set up the `playwright-tests` project — DONE
+- Write GET tests — posts, users, comments, todos — DONE
+- Assert on: status codes, response body shape, required fields, response time — DONE
+- Write negative tests — invalid IDs, non-existent resources (404s) — DONE
+- Organise tests into logical suites per resource — DONE
 
 ### Phase 2 — Playwright + Auth (TMDB)
 - Add TMDB API key management (environment variables)

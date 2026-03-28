@@ -10,9 +10,8 @@ test('jsonplaceholder - get posts', async ({request}) => {
   // Check Schemas for all obhects in the response (array of objects)
   const body  = await response.json();
   const result = PostsSchema.safeParse(body);
-  
+  expect(result.success).toBe(true);
 
-  console.log(body);
   expect(body.length).toBe(100);
 
 }
