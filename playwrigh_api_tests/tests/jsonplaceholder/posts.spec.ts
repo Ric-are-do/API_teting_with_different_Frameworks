@@ -10,8 +10,7 @@ test('jsonplaceholder - get posts', async ({request}) => {
   // Check Schemas for all obhects in the response (array of objects)
   const body  = await response.json();
   const result = PostsSchema.safeParse(body);
-  expect(result.success).toBe(true);
-
+  expect(result.success).toBe(true); // this will check if the response body matches the schema we defined for the posts, if the validation fails it will return false and the test will fail, if it passes it will return true and the test will pass.
   expect(body.length).toBe(100);
 
 }
